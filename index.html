@@ -47,7 +47,7 @@
                             <img :src="maionese">
                             <img :src="burger">
                             <img :src="pao[1]">
-                           
+
                         </div> <!-- col -->
                     </div>
                 </div>
@@ -58,12 +58,29 @@
                     <!-- TIPO do Pão -->
                     <div class="row mt-2">
                         <div class="col">
-                            Tipo de Pão
+                            <div class="card">
+                                <div class="card-header">
+                                    Tipo de Pão
+                                </div>
+                            </div>
+                            <div class="card-body">
+
+                                <div class="form-check form-check-inline">
+
+                                    <input type="radio" class="form-check-input">
+                                    <label class="form-check-label"> Gergelim </label>
+
+                                </div>
+
+                                
+
+
+                            </div>
                         </div>
                     </div>
-                    
 
-                    
+
+
                 </div>
 
             </div> <!-- Fim ROW -->
@@ -78,11 +95,11 @@
     <script>
         //const = constante
         // vm = view (html) Model (js)
-        const vm = new Vue ({ 
+        const vm = new Vue({
             el: '#app',
 
 
-        }) 
+        })
 
     </script>
 
