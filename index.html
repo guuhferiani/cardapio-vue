@@ -92,7 +92,7 @@
 
                                     <div class="form-check">
 
-                                        <input type="checkbox" class="form-check-input" value="alface" v-model="">
+                                        <input type="checkbox" class="form-check-input" value="alface" v-model="inputSalada">
 
                                         <label class="form-check-label"> Alface </label>
 
@@ -125,7 +125,8 @@
             el: '#app',
 
             data: {  // atributos // propriedades
-                inputTipoPao: '',
+                inputTipoPao: '',  /* radio = Obrigatorio */ 
+                inputSalada: [], /* checkbox = opcional */
 
                 etapa: 1,
                 
@@ -142,8 +143,16 @@
                         default:
                             return ['imagens/padrao/pao_superior.png', 'imagens/padrao/pao_inferior.png']
                     }
-
                 },
+
+                alface () {
+                    if (this.inputSalada.includes('alface')) {
+                        return 'imagens/alface.png'
+                    }
+
+                    return 'imagens/padrao/alface.png'
+                },
+                
                 
             },
             
