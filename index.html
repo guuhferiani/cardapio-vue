@@ -173,6 +173,7 @@
                 inputTipoPao: '',  /* radio = Obrigatorio */ 
                 inputSalada: [], /* checkbox = opcional */
                 inputMolhos: [],
+                
                 etapa: 1,
                 
 
@@ -202,7 +203,29 @@
                     return 'imagens/padrao/alface.png'
                 },
 
+                ketchup () {
+                    
+                    if (this.inputMolhos.includes('ketchup')) {
+                        return 'imagens/ketchup.png'
+                    }
+
+                    return 'imagens/padrao/molho.png'
+                    
+                },
+
+                mostarda () {
+                    
+                    if (this.inputMolhos.includes('mostarda')) {
+                        return 'imagens/mostarda.png'
+                    }
+
+                    return 'imagens/padrao/molho.png'
                 
+                },
+
+
+
+
 
 
                 
