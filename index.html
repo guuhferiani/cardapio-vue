@@ -53,7 +53,9 @@
                     <!-- TIPO do Pão -->
                     <div class="row mt-2">
                         <div class="col">
+
                             <div class="card">
+
                                 <div class="card-header">
                                     Tipo do Pão
                                 </div>
@@ -61,6 +63,7 @@
                                 <div class="card-body">
 
                                     <div class="form-check form-check-inline">
+                                        
                                         <input type="radio" class="form-check-input"  value="gergelim" v-model="inputTipoPao">
 
                                         <label class="form-check-label">Gergelim</label>
@@ -114,19 +117,44 @@
                                     Molhos
                                 </div>
 
-                                
-                                
+                                <div class="card-body">
 
+                                    <div class="form-check form-check-inline">
 
+                                        <input type="checkbox" class="form-check-input" value="ketchup" v-model="inputMolhos">
+                                        <label class="form-check-label"> Ketchup </label>
+
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+
+                                        <input type="checkbox" class="form-check-input" value="mostarda" v-model="inputMolhos">
+                                        <label class="form-check-label"> Mostarda </label>
+
+                                    </div>
+
+                                    <div class="form-check form-check-inline">
+
+                                        <input type="checkbox" class="form-check-input" value="maionese" v-model="inputMolhos">
+
+                                        <label class="form-check-label"> Maionese </label>
+
+                                    </div>
+
+                                </div><!-- fim card body -->
+                             
                             </div>
                         </div>
                     </div>
+                    <!-- Fim Molhos -->
 
+                    
 
 
                                                       
                     
                     
+
                 </div> <!-- Fim Etapa 1 -->
                 <!-- Fim col md -->
 
@@ -144,7 +172,7 @@
             data: {  // atributos // propriedades
                 inputTipoPao: '',  /* radio = Obrigatorio */ 
                 inputSalada: [], /* checkbox = opcional */
-
+                inputMolhos: [],
                 etapa: 1,
                 
 
@@ -153,12 +181,16 @@
             computed: { // propriedades computadas // reativos
                 pao() {
                     switch (this.inputTipoPao) {
-                        case 'gergelim':
-                            return ['imagens/pao_gergelim_superior.png', 'imagens/pao_gergelim_inferior.png']
-                        case 'australiano':
-                            return ['imagens/pao_australiano_superior.png', 'imagens/pao_australiano_inferior.png']
+                        
                         default:
                             return ['imagens/padrao/pao_superior.png', 'imagens/padrao/pao_inferior.png']
+                            
+                        case 'gergelim':
+                            return ['imagens/pao_gergelim_superior.png', 'imagens/pao_gergelim_inferior.png']
+
+                        case 'australiano':
+                            return ['imagens/pao_australiano_superior.png', 'imagens/pao_australiano_inferior.png']
+                        
                     }
                 },
 
@@ -169,6 +201,9 @@
 
                     return 'imagens/padrao/alface.png'
                 },
+
+                
+
 
                 
             },
