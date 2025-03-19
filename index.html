@@ -63,11 +63,13 @@
                                 <div class="card-body">
 
                                     <div class="form-check form-check-inline">
-                                        
-                                        <input type="radio" class="form-check-input"  value="gergelim" v-model="inputTipoPao">
+
+                                        <input type="radio" class="form-check-input" value="gergelim"
+                                            v-model="inputTipoPao">
 
                                         <label class="form-check-label">Gergelim</label>
                                     </div>
+                                    
 
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" value="australiano"
@@ -95,17 +97,18 @@
 
                                     <div class="form-check">
 
-                                        <input type="checkbox" class="form-check-input" value="alface" v-model="inputSalada">
+                                        <input type="checkbox" class="form-check-input" value="alface"
+                                            v-model="inputSalada">
 
                                         <label class="form-check-label"> Alface </label>
 
                                     </div>
-                        
+
                                 </div>
 
                             </div>
                         </div>
-                    </div> 
+                    </div>
                     <!-- Fim Salada -->
 
                     <!-- Molhos -->
@@ -121,44 +124,103 @@
 
                                     <div class="form-check form-check-inline">
 
-                                        <input type="checkbox" class="form-check-input" value="ketchup" v-model="inputMolhos">
+                                        <input type="checkbox" class="form-check-input" value="ketchup"
+                                            v-model="inputMolhos">
                                         <label class="form-check-label"> Ketchup </label>
 
                                     </div>
 
                                     <div class="form-check form-check-inline">
 
-                                        <input type="checkbox" class="form-check-input" value="mostarda" v-model="inputMolhos">
+                                        <input type="checkbox" class="form-check-input" value="mostarda"
+                                            v-model="inputMolhos">
                                         <label class="form-check-label"> Mostarda </label>
 
                                     </div>
 
                                     <div class="form-check form-check-inline">
 
-                                        <input type="checkbox" class="form-check-input" value="maionese" v-model="inputMolhos">
+                                        <input type="checkbox" class="form-check-input" value="maionese"
+                                            v-model="inputMolhos">
 
                                         <label class="form-check-label"> Maionese </label>
 
                                     </div>
 
                                 </div><!-- fim card body -->
-                             
+
                             </div>
                         </div>
                     </div>
                     <!-- Fim Molhos -->
 
-                    
+                    <!-- Tipos Hamburguer -->
+                    <div class="row mt-2">
+                        <div class="col">
+                            <div class="card">
 
+                                <div class="card-header">
+                                    Tipo de Burger
+                                </div>
 
-                                                      
-                    
-                    
+                                <div class="card-body">
 
-                </div> <!-- Fim Etapa 1 -->
-                <!-- Fim col md -->
+                                    <!-- Bovino -->
+                                    <div class="form-check form-check-inline">
 
-                                
+                                        <input type="radio" value="bovino" v-model="inputBurger">
+
+                                        <label class="form-check-label"> Bovina </label>
+
+                                    </div>
+
+                                    <!-- Frango -->
+                                    <div class="form-check form-check-inline">
+
+                                        <input type="radio" value="frango" v-model="inputBurger">
+
+                                        <label class="form-check-label"> Frango </label>
+
+                                    </div>
+
+                                    <!-- Vegetal -->
+                                    <div class="form-check form-check-inline">
+
+                                        <input type="radio" value="vegetal" v-model="inputBurger">
+
+                                        <label class="form-check-label"> Vegetal </label>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div> <!-- Fim Burger -->
+
+                    <!-- Fazer o Pedido -->
+                    <div class="row mt-2">
+
+                        <div class="col d-flex justify-content-end">
+
+                            <button type="button" class="btn btn-primary" @click="fazerPedido()">
+                                Fazer pedido
+                            </button>
+                        </div>
+                    </div>
+
+                </div> <!-- Fim Etapa 1  // Fim col md -->
+
+                <div class="col-md-6" v-if="etapa == 2">
+                    <div class="row mt-2">
+                        <div class="col">
+                            <div class="card">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
 
             </div> <!-- fim ROW -->
         </div> <!-- FIM APP -->
@@ -170,11 +232,13 @@
             el: '#app',
 
             data: {  // atributos // propriedades
-                inputTipoPao: '',  /* radio = Obrigatorio */ 
+                etapa: 1, 
+                inputTipoPao: '',  /* radio = Obrigatorio */
                 inputSalada: [], /* checkbox = opcional */
                 inputMolhos: [],
+                inputBurger: '',
                 
-                etapa: 1,
+                
                 
 
             },
@@ -182,20 +246,20 @@
             computed: { // propriedades computadas // reativos
                 pao() {
                     switch (this.inputTipoPao) {
-                        
+
                         default:
                             return ['imagens/padrao/pao_superior.png', 'imagens/padrao/pao_inferior.png']
-                            
+
                         case 'gergelim':
                             return ['imagens/pao_gergelim_superior.png', 'imagens/pao_gergelim_inferior.png']
 
                         case 'australiano':
                             return ['imagens/pao_australiano_superior.png', 'imagens/pao_australiano_inferior.png']
-                        
+
                     }
                 },
 
-                alface () {
+                alface() {
                     if (this.inputSalada.includes('alface')) {
                         return 'imagens/alface.png'
                     }
@@ -203,35 +267,70 @@
                     return 'imagens/padrao/alface.png'
                 },
 
-                ketchup () {
-                    
+                ketchup() {
+
                     if (this.inputMolhos.includes('ketchup')) {
                         return 'imagens/ketchup.png'
                     }
 
                     return 'imagens/padrao/molho.png'
-                    
+
                 },
 
-                mostarda () {
-                    
+                mostarda() {
+
                     if (this.inputMolhos.includes('mostarda')) {
                         return 'imagens/mostarda.png'
                     }
 
                     return 'imagens/padrao/molho.png'
-                
+
+                },
+
+                maionese() {
+
+                    if (this.inputMolhos.includes('maionese')) {
+                        return 'imagens/maionese.png'
+                    }
+
+                    return 'imagens/padrao/molho.png'
+
+                },
+
+                burger() {
+                    switch (this.inputBurger) {
+                        case 'bovino':
+                            return 'imagens/bovino.png'
+
+                        case 'frango':
+                            return 'imagens/frango.png'
+
+                        case 'vegetal':
+                            return 'imagens/soja.png'
+
+                        default:
+                            return 'imagens/padrao/hamburguer.png'
+                    }
+                },
+
+            },
+
+            methods: {
+                fazerPedido() {
+                    // se Pão e Carne forem Selecionados
+                    if(this.inputTipoPao && this.inputBurger) {
+                        this.etapa = 2
+                        // avança para etapa 2
+                    }
+                    else {
+                        alert('Você precisa selecionar no minimo um pão e uma carne')
+                    }
                 },
 
 
-
-
-
-
-                
             },
-            
-            
+
+
         })
     </script>
 
