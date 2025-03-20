@@ -168,7 +168,7 @@
                                     <!-- Bovino -->
                                     <div class="form-check form-check-inline">
 
-                                        <input type="radio" value="bovino" v-model="inputBurger">
+                                        <input type="radio" value="bovino" v-model="inputBurger" class="form-check-input">
 
                                         <label class="form-check-label"> Bovina </label>
 
@@ -177,7 +177,7 @@
                                     <!-- Frango -->
                                     <div class="form-check form-check-inline">
 
-                                        <input type="radio" value="frango" v-model="inputBurger">
+                                        <input type="radio" value="frango" v-model="inputBurger" class="form-check-input">
 
                                         <label class="form-check-label"> Frango </label>
 
@@ -186,7 +186,7 @@
                                     <!-- Vegetal -->
                                     <div class="form-check form-check-inline">
 
-                                        <input type="radio" value="vegetal" v-model="inputBurger">
+                                        <input type="radio" value="vegetal" v-model="inputBurger" class="form-check-input">
 
                                         <label class="form-check-label"> Vegetal </label>
 
@@ -216,17 +216,56 @@
                         <div class="col">
                             <div class="card">
 
-                                Informe os seus Dados
+                                <div class="card-header">
+                                    Informe os seus Dados
+                                </div> <!-- fim titulo -->
 
-                                Nome 
+                                <div class="card-body">
 
-                                Mesa
+                                    <div class="mb-3">
+                                        <label class="form-label">
+                                            Seu Nome
+                                        </label>
+                                        
+                                        <input type="text" class="form-control" v-model="inputNome">
+                                    </div>
 
-                            </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">
+                                           Número da Mesa
+                                        </label>
+                                        
+                                        <input type="text" class="form-control" v-model="inputMesa">
+                                    </div>
+                        
+                                </div> <!-- fim body -->
+                            
+                            </div> <!-- Fim Card -->
                         </div>
                     </div>
-                </div>
-            
+
+
+
+                    <div class="row mt-2">
+                        
+                        <div class="col d-flex justify-content-between">
+                            
+                            <button type="button" class="btn btn-warning" @click="etapa -= 1"> 
+                                Editar o Lanche
+                            </button>
+
+                            <button type="button" class="btn btn-success" @click="confirmarPedido()"> 
+                                Confirmar
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div> <!-- Fim Etapa 2 -->
+
+                
+                      
 
             </div> <!-- fim ROW -->
         </div> <!-- FIM APP -->
@@ -243,9 +282,9 @@
                 inputSalada: [], /* checkbox = opcional */
                 inputMolhos: [],
                 inputBurger: '',
-                
-                
-                
+
+                inputNome: '',
+                inputMesa: '',                          
 
             },
 
@@ -333,10 +372,16 @@
                     }
                 },
 
+                confirmarPedido() {
+                    if(this.inputNome && this.inputMesa) {
+                        this.etapa = 3
+                    }
+                    else {
+                        alert('Você precisa informar o seu Nome e a Mesa.')
+                    }
+                },
 
             },
-
-
         })
     </script>
 
