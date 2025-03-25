@@ -247,24 +247,58 @@
 
 
                     <div class="row mt-2">
-                        
                         <div class="col d-flex justify-content-between">
-                            
                             <button type="button" class="btn btn-warning" @click="etapa -= 1"> 
                                 Editar o Lanche
                             </button>
-
                             <button type="button" class="btn btn-success" @click="confirmarPedido()"> 
                                 Confirmar
                             </button>
-
                         </div>
-
                     </div>
-
                 </div> <!-- Fim Etapa 2 -->
 
-                
+                <!-- Repetir pedido -->
+                 <!-- Etapa == 3 -->
+                <div class="col-md-6" v-if="etapa == 3">
+                    
+                    <!-- Pedido Confirmado -->
+                    <div class="row mt-2">
+                        <div class="col">
+
+                            <div class="card">
+
+                                <div class="card-header">
+                                    Pedido Confirmado
+                                </div>
+
+                                <div class="card-body">
+                                    <p>Agora é só aguardar.</p>
+                                    <p>Vamos levar o pedido até você.</p>
+                                </div>
+
+                            </div> <!-- fim Card -->
+
+                        </div>
+                    </div> <!-- Fim Pedido Confirmado -->
+
+                    <div class="row mt-2">
+                        <div class="col d-flex justify-content-between">
+
+                            <!-- Botao 1 Repetir o Pedido -->
+                            <button class="btn btn-primary" type="button" @click="etapa = 1">
+                                Repetir Pedido    
+                            </button>
+
+                            <!-- Botao 2 Novo Pedido -->
+                            <button class="btn btn-success" type="button" @click="novoPedido()">
+                                Novo Pedido
+                            </button>
+
+                        </div>
+                    </div>
+
+                </div> <!-- Fim etapa 3 -->
                       
 
             </div> <!-- fim ROW -->
@@ -277,15 +311,14 @@
             el: '#app',
 
             data: {  // atributos // propriedades
-                etapa: 1, 
                 inputTipoPao: '',  /* radio = Obrigatorio */
                 inputSalada: [], /* checkbox = opcional */
                 inputMolhos: [],
                 inputBurger: '',
-
+                etapa: 1,
                 inputNome: '',
-                inputMesa: '',                          
-
+                inputMesa: '',      
+                novoPedidoAssincrono: null           
             },
 
             computed: { // propriedades computadas // reativos
@@ -381,7 +414,26 @@
                     }
                 },
 
+                novoPedido() {
+
+                    this.etapa = 1
+
+                    this.inputTipoPao = ''
+                    this.inputSalada = []
+                    this.inputMolhos = []
+                    this.inputBurger = ''
+                    this.inputNome = ''
+                    this.inputMesa = ''
+                },
+                
             },
+            watch: {
+                etapa(novoValor) {
+                    if (novoValor == 1) {
+                        clearTimeout(this.novoPedidoAssincrono)
+                    }
+                }
+            }
         })
     </script>
 
